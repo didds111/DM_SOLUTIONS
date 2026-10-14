@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dmsolutions-official.netlify.app/sitemap.xml
