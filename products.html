@@ -83,6 +83,8 @@ body>.category-nav,body>main.container{display:none!important}
  const $=id=>document.getElementById(id);
  const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const categoryNames={panel:'판넬쿨러',liquid:'액체냉각패키지',oil:'오일쿨러',water:'워터칠러',fan:'팬쿨러',filter:'팬&필터'};
+ window.closeDetail=function(){const modal=$('modalBackdrop');if(modal)modal.classList.remove('open');};
+ document.addEventListener('keydown',event=>{if(event.key==='Escape')window.closeDetail();});
  const categoryOrder=['all','panel','liquid','oil','water','fan','filter'];
  const subOptions={
   panel:[['ess','ESS(옥외형)'],['es','ES(에너지 절감형)'],['s','S(측면/정면부착형)'],['x','X(반매립형)'],['r','R(천장형)']],
