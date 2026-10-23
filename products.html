@@ -82,11 +82,11 @@ else if(hash==='filter-side'){setCategory('filter');document.querySelector('[dat
   const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const categoryTargets=[
     {keys:['판넬쿨러','판넬 쿨러','panel'],id:'panel-intro',cat:'panel'},
-    {keys:['액체냉각패키지 LCP(IT용/선박용)','액체냉각패키지','LCP','액체 냉각 패키지'],id:'liquid-intro',cat:'liquid'},
-    {keys:['오일쿨러','오일 쿨러','oil cooler'],id:'oil-intro',cat:'oil'},
-    {keys:['워터칠러','워터 칠러','water chiller'],id:'water-intro',cat:'water'},
-    {keys:['팬쿨러','팬 쿨러','fan cooler'],id:'fan-intro',cat:'fan'},
-    {keys:['팬&필터(측면)','팬앤필터(측면)','팬&필터 측면','팬필터 측면','측면형 팬&필터'],id:'filter-side-intro',cat:'filter'},
+    {keys:['liquid','액체냉각패키지 LCP(IT용/선박용)','액체냉각패키지','LCP','액체 냉각 패키지'],id:'liquid-intro',cat:'liquid'},
+    {keys:['oil','오일쿨러','오일 쿨러','oil cooler'],id:'oil-intro',cat:'oil'},
+    {keys:['water','워터칠러','워터 칠러','water chiller'],id:'water-intro',cat:'water'},
+    {keys:['fan','팬쿨러','팬 쿨러','fan cooler'],id:'fan-intro',cat:'fan'},
+    {keys:['filter-side','filter','팬&필터(측면)','팬앤필터(측면)','팬&필터 측면','팬필터 측면','측면형 팬&필터'],id:'filter-side-intro',cat:'filter'},
     {keys:['팬&필터(천장)','팬앤필터(천장)','팬&필터 천장','팬필터 천장','천장형 팬&필터'],id:'filter-ceiling-intro',cat:'filter'}
   ];
   function getTarget(category){
