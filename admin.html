@@ -12,6 +12,8 @@
 <main>
 <section class="panel" id="loginPanel"><h2>관리자 로그인</h2><p class="muted">관리자 계정으로 로그인하세요. 관리자 권한이 확인된 계정만 제품을 관리할 수 있습니다.</p><form id="loginForm"><div class="row"><div class="field"><label for="email">이메일</label><input id="email" type="email" autocomplete="username" required></div><div class="field"><label for="password">비밀번호</label><input id="password" type="password" autocomplete="current-password" required></div></div><button class="btn" type="submit">로그인</button></form><div id="loginStatus" class="status"></div></section>
 <div id="adminArea" class="hidden">
+<section class="panel"><div class="topline"><h2>관리 메뉴</h2><div class="actions"><button type="button" class="btn" id="productTab">제품 관리</button><button type="button" class="btn secondary" id="portfolioTab">포트폴리오 관리</button></div></div><p class="muted">제품과 포트폴리오를 이 관리자 화면에서 함께 등록하고 관리합니다.</p></section>
+<div id="productAdminPane">
 <section class="panel"><div class="topline"><h2 id="formTitle">제품 등록</h2><button class="btn secondary" id="newBtn" type="button">새 제품 작성</button></div>
 <div class="note">기존 제품 페이지에 있던 정보를 이 폼으로 옮겨 등록합니다. 사진은 우선 공개 접근 가능한 이미지 URL을 입력하는 방식입니다. 저장 전에는 기존 제품 페이지의 원본 자료를 삭제하지 마세요.</div>
 <form id="productForm">
@@ -30,6 +32,29 @@
 <div id="formStatus" class="status"></div>
 </form></section>
 <section class="panel"><div class="topline"><h2>등록된 제품</h2><div class="actions"><button id="importLegacyBtn" class="btn" type="button">기존 제품 49개 이전</button><button id="reloadBtn" class="btn secondary" type="button">새로고침</button></div></div><div id="productList" class="list"><p class="muted">제품 목록을 불러오는 중입니다.</p></div><div id="listStatus" class="status"></div></section>
+</div>
+<div id="portfolioAdminPane" class="hidden">
+<section class="panel">
+ <div class="topline"><h2 id="portfolioFormTitle">포트폴리오 등록</h2><button class="btn secondary" id="newPortfolioBtn" type="button">새 포트폴리오 작성</button></div>
+ <p class="note">현장 프로젝트와 설치 사례를 등록하면 공개 포트폴리오 페이지에 자동으로 표시됩니다.</p>
+ <form id="portfolioForm">
+  <input id="portfolioId" type="hidden">
+  <div class="row">
+   <div class="field"><label for="portfolioTitle">프로젝트명 *</label><input id="portfolioTitle" required placeholder="예: ESS 냉각 설비 설치"></div>
+   <div class="field"><label for="portfolioCategory">분류</label><input id="portfolioCategory" placeholder="예: ESS, 산업용 냉각기"></div>
+   <div class="field"><label for="portfolioDate">프로젝트 날짜</label><input id="portfolioDate" type="date"></div>
+   <div class="field"><label for="portfolioSort">정렬 순서</label><input id="portfolioSort" type="number" value="0" step="1"></div>
+  </div>
+  <div class="field"><label for="portfolioDescription">프로젝트 설명 *</label><textarea id="portfolioDescription" required placeholder="설치 현장, 적용 제품, 작업 내용 등을 입력하세요."></textarea></div>
+  <div class="field"><label for="portfolioImageFiles">현장 사진 파일 업로드</label><input id="portfolioImageFiles" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple><button class="btn secondary" id="uploadPortfolioImages" type="button" style="margin-top:8px">사진 업로드</button><small class="muted">JPG, PNG, WebP, GIF · 파일당 최대 10MB. 업로드한 사진 주소는 아래 목록에 추가됩니다.</small><div id="portfolioUploadStatus" class="status"></div></div>
+  <div class="field"><label for="portfolioImages">사진 URL (한 줄에 하나씩)</label><textarea id="portfolioImages" placeholder="https://.../site-photo.webp"></textarea></div>
+  <div class="field"><label><input id="portfolioPublished" type="checkbox" checked style="width:auto;margin-right:8px">저장 후 공개 게시</label></div>
+  <div class="actions"><button class="btn" id="savePortfolioBtn" type="submit">포트폴리오 저장</button><button class="btn secondary" id="cancelPortfolioEdit" type="button">취소</button></div>
+  <div id="portfolioFormStatus" class="status"></div>
+ </form>
+</section>
+<section class="panel"><div class="topline"><h2>등록된 포트폴리오</h2><button id="reloadPortfolioBtn" class="btn secondary" type="button">새로고침</button></div><div id="portfolioList" class="list"><p class="muted">포트폴리오 목록을 불러오는 중입니다.</p></div><div id="portfolioListStatus" class="status"></div></section>
+</div>
 </div>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -80,6 +105,102 @@ $('uploadImages').addEventListener('click',async()=>{
  }catch(err){status('uploadStatus','이미지 업로드 실패: '+err.message,'error');}
  finally{btn.disabled=false;}
 });
+
+const portfolioCategoryNames={};
+let portfolioRecords=[];
+function switchAdminTab(which){
+ const products=which==='products';
+ $('productAdminPane').classList.toggle('hidden',!products);
+ $('portfolioAdminPane').classList.toggle('hidden',products);
+ $('productTab').className='btn'+(products?'':' secondary');
+ $('portfolioTab').className='btn'+(products?' secondary':'');
+}
+function fillPortfolioForm(p){
+ $('portfolioId').value=p?.id||'';
+ $('portfolioTitle').value=p?.title||'';
+ $('portfolioCategory').value=p?.category||'';
+ $('portfolioDate').value=p?.project_date||'';
+ $('portfolioSort').value=p?.sort_order??0;
+ $('portfolioDescription').value=p?.description||'';
+ $('portfolioImages').value=Array.isArray(p?.image_urls)?p.image_urls.join('\\n'):'';
+ $('portfolioPublished').checked=p?.is_published??true;
+ $('portfolioFormTitle').textContent=p?'포트폴리오 수정':'포트폴리오 등록';
+ $('savePortfolioBtn').textContent=p?'수정 내용 저장':'포트폴리오 저장';
+ status('portfolioFormStatus','');
+ $('portfolioUploadStatus').textContent='';
+}
+async function loadPortfolio(){
+ status('portfolioListStatus','목록을 불러오는 중…');
+ const {data,error}=await db.from('portfolio').select('*').order('sort_order',{ascending:true}).order('created_at',{ascending:false});
+ if(error){status('portfolioListStatus','포트폴리오 조회 실패: '+error.message,'error');return;}
+ portfolioRecords=data||[];renderPortfolioList();
+ status('portfolioListStatus',portfolioRecords.length+'개 포트폴리오를 불러왔습니다.','ok');
+}
+function renderPortfolioList(){
+ const list=$('portfolioList');
+ if(!portfolioRecords.length){list.innerHTML='<p class="muted">등록된 포트폴리오가 없습니다.</p>';return;}
+ list.innerHTML=portfolioRecords.map(p=>{
+  const imgs=Array.isArray(p.image_urls)?p.image_urls:[];
+  return '<article class="item"><img class="thumb" src="'+esc(imgs[0]||'')+'" alt=""><div class="item-info"><strong>'+esc(p.title||'제목 없음')+'</strong><small>'+esc(p.category||'분류 없음')+(p.project_date?' · '+esc(p.project_date):'')+'</small></div><span class="pill '+(p.is_published?'':'off')+'">'+(p.is_published?'공개':'비공개')+'</span><div class="actions"><button class="btn secondary" data-portfolio-edit="'+esc(p.id)+'" type="button">수정</button><button class="btn secondary" data-portfolio-toggle="'+esc(p.id)+'" type="button">'+(p.is_published?'숨기기':'게시')+'</button><button class="btn danger" data-portfolio-delete="'+esc(p.id)+'" type="button">삭제</button></div></article>';
+ }).join('');
+ list.querySelectorAll('[data-portfolio-edit]').forEach(b=>b.onclick=()=>{const p=portfolioRecords.find(x=>String(x.id)===b.dataset.portfolioEdit);fillPortfolioForm(p);window.scrollTo({top:0,behavior:'smooth'});});
+ list.querySelectorAll('[data-portfolio-toggle]').forEach(b=>b.onclick=()=>togglePortfolioPublish(b.dataset.portfolioToggle));
+ list.querySelectorAll('[data-portfolio-delete]').forEach(b=>b.onclick=()=>deletePortfolio(b.dataset.portfolioDelete));
+}
+async function togglePortfolioPublish(id){
+ const p=portfolioRecords.find(x=>String(x.id)===id);if(!p)return;
+ const {error}=await db.from('portfolio').update({is_published:!p.is_published}).eq('id',p.id);
+ if(error){status('portfolioListStatus','게시 상태 변경 실패: '+error.message,'error');return;}
+ await loadPortfolio();
+}
+async function deletePortfolio(id){
+ const p=portfolioRecords.find(x=>String(x.id)===id);if(!p||!confirm('포트폴리오 "'+(p.title||'')+'"를 삭제할까요? 이 작업은 되돌릴 수 없습니다.'))return;
+ const {error}=await db.from('portfolio').delete().eq('id',p.id);
+ if(error){status('portfolioListStatus','삭제 실패: '+error.message,'error');return;}
+ if($('portfolioId').value===id)fillPortfolioForm();
+ await loadPortfolio();
+}
+$('productTab').onclick=()=>switchAdminTab('products');
+$('portfolioTab').onclick=()=>{switchAdminTab('portfolio');loadPortfolio();};
+$('newPortfolioBtn').onclick=()=>fillPortfolioForm();
+$('cancelPortfolioEdit').onclick=()=>fillPortfolioForm();
+$('reloadPortfolioBtn').onclick=loadPortfolio;
+$('uploadPortfolioImages').addEventListener('click',async()=>{
+ if(!currentUser){status('portfolioUploadStatus','먼저 관리자 로그인을 해주세요.','error');return;}
+ const files=Array.from($('portfolioImageFiles').files||[]);
+ if(!files.length){status('portfolioUploadStatus','업로드할 사진 파일을 선택해주세요.','error');return;}
+ const allowed=['image/jpeg','image/png','image/webp','image/gif'];
+ for(const file of files){if(!allowed.includes(file.type)){status('portfolioUploadStatus','지원하지 않는 이미지 형식입니다: '+file.name,'error');return;}if(file.size>10*1024*1024){status('portfolioUploadStatus','파일당 최대 10MB까지 업로드할 수 있습니다: '+file.name,'error');return;}}
+ const btn=$('uploadPortfolioImages');btn.disabled=true;
+ const urls=$('portfolioImages').value.split('\\n').map(v=>v.trim()).filter(Boolean);let uploaded=0;
+ try{
+  for(const file of files){
+   const safeName=file.name.normalize('NFKD').replace(/[^a-zA-Z0-9._-]+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'')||'portfolio-image';
+   const path='portfolio/'+Date.now()+'-'+Math.random().toString(36).slice(2,9)+'-'+safeName;
+   status('portfolioUploadStatus','사진 업로드 중… '+(uploaded+1)+'/'+files.length);
+   const {error}=await db.storage.from('dm-public-media').upload(path,file,{contentType:file.type,cacheControl:'3600',upsert:false});
+   if(error)throw new Error(file.name+': '+error.message);
+   const {data}=db.storage.from('dm-public-media').getPublicUrl(path);
+   if(!data?.publicUrl)throw new Error('공개 사진 주소를 만들지 못했습니다: '+file.name);
+   urls.push(data.publicUrl);uploaded++;
+  }
+  $('portfolioImages').value=[...new Set(urls)].join('\\n');$('portfolioImageFiles').value='';
+  status('portfolioUploadStatus',uploaded+'개 사진 업로드 완료. 포트폴리오 저장 버튼을 눌러 연결하세요.','ok');
+ }catch(err){status('portfolioUploadStatus','사진 업로드 실패: '+err.message,'error');}
+ finally{btn.disabled=false;}
+});
+$('portfolioForm').addEventListener('submit',async e=>{
+ e.preventDefault();if(!currentUser)return;
+ const images=$('portfolioImages').value.split('\\n').map(v=>v.trim()).filter(Boolean);
+ if(images.some(v=>!/^https?:\\/\\//i.test(v))){status('portfolioFormStatus','사진 주소는 http:// 또는 https:// 로 시작해야 합니다.','error');return;}
+ const payload={title:$('portfolioTitle').value.trim(),description:$('portfolioDescription').value.trim(),category:$('portfolioCategory').value.trim()||null,project_date:$('portfolioDate').value||null,sort_order:Number.parseInt($('portfolioSort').value,10)||0,image_urls:images,is_published:$('portfolioPublished').checked};
+ const id=$('portfolioId').value;status('portfolioFormStatus','저장 중…');
+ const result=id?await db.from('portfolio').update(payload).eq('id',id):await db.from('portfolio').insert(payload);
+ if(result.error){status('portfolioFormStatus','저장 실패: '+result.error.message,'error');return;}
+ status('portfolioFormStatus','저장했습니다. 공개된 항목은 포트폴리오 페이지에 자동 반영됩니다.','ok');
+ fillPortfolioForm();await loadPortfolio();
+});
+
 $('productForm').addEventListener('submit',async e=>{e.preventDefault();if(!currentUser)return;const images=$('images').value.split('\n').map(s=>s.trim()).filter(Boolean);if(images.some(s=>!/^https?:\/\//i.test(s))){status('formStatus','이미지 주소는 http:// 또는 https:// 로 시작해야 합니다.','error');return;}const category=$('category').value;const payload={name:$('name').value.trim(),model:$('model').value.trim(),category:category.startsWith('filter-')?'filter':category,subcategory:$('subcategory').value.trim(),description:$('description').value.trim(),specifications:readSpecs(),image_urls:images,is_published:$('published').checked};const id=$('productId').value;status('formStatus','저장 중…');const result=id?await db.from('products').update(payload).eq('id',id):await db.from('products').insert(payload);if(result.error){status('formStatus','저장 실패: '+result.error.message,'error');return;}status('formStatus','저장했습니다. 기존 products.html의 고정 제품 데이터는 아직 별도로 이전·검증해야 합니다.','ok');fillForm();await loadProducts();});
 async function importLegacyProducts(){
  if(!currentUser)return;
