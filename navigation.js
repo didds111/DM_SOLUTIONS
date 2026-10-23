@@ -1,9 +1,9 @@
 (function(){
   if(window.__dmSpaNavInstalled)return;
   window.__dmSpaNavInstalled=true;
-  const routes=['index.html','products.html','portfolio.html','/'];
+  const routes=['/','/index.html','/products','/products.html','/portfolio','/portfolio.html'];
   let busy=false;
-  function localRoute(url){return url.origin===location.origin&&routes.some(r=>url.pathname.endsWith(r));}
+  function localRoute(url){const path=url.pathname.replace(/\\/$/,'')||'/';return url.origin===location.origin&&routes.includes(path);}
   async function render(url,addHistory,restoreState){
     if(busy)return;
     busy=true;
