@@ -108,6 +108,11 @@ else if(hash==='filter-side'){setCategory('filter');document.querySelector('[dat
   try{
     const {data,error}=await client.from('products').select('id,name,model,category,subcategory,description,specifications,image_urls').eq('is_published',true).order('created_at',{ascending:false});
     if(error)throw error;
+    console.info('[CMS 진단] 공개 제품 조회 결과:', {
+      totalPublished: (data||[]).length,
+      categoryCounts: (data||[]).reduce((acc,p)=>{const k=String(p.category||'미분류')+' / '+String(p.subcategory||'하위분류 없음');acc[k]=(acc[k]||0)+1;return acc;},{}),
+      panelRouting: (data||[]).filter(p=>String(p.category||'').toLowerCase()==='panel').map(p=>({model:p.model,name:p.name,subcategory:p.subcategory,target:(getTarget(p.category,p.subcategory)||{}).id||'NO TARGET'}))
+    });
     (data||[]).forEach((p,index)=>{
       const target=getTarget(p.category,p.subcategory);
       if(!target){console.warn('제품 카테고리가 기존 분류와 일치하지 않아 표시하지 않았습니다:',p.category,p.name);return;}
