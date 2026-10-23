@@ -23,7 +23,7 @@
 <div class="field"><label for="subcategory">세부 분류</label><input id="subcategory" placeholder="예: ESS, ES, 측면부착형"></div>
 </div>
 <div class="field"><label for="description">제품 설명</label><textarea id="description" placeholder="제품 특징과 용도"></textarea></div>
-<div class="field"><label for="images">제품 이미지 URL (한 줄에 하나씩)</label><textarea id="images" placeholder="https://.../product.webp"></textarea><small class="muted">첫 번째 이미지가 제품 목록 대표 이미지로 표시됩니다. 현재는 URL 등록이며 파일 업로드는 저장소 버킷 확인 후 연결해야 합니다.</small></div>
+<div class="field"><label for="imageFiles">제품 이미지 파일 업로드</label><input id="imageFiles" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple><button class="btn secondary" id="uploadImages" type="button" style="margin-top:8px">이미지 업로드</button><small class="muted">JPG, PNG, WebP, GIF · 파일당 최대 10MB. 업로드한 이미지 주소는 아래 URL 목록에 자동 추가됩니다.</small><div id="uploadStatus" class="status"></div></div><div class="field"><label for="images">제품 이미지 URL (한 줄에 하나씩)</label><textarea id="images" placeholder="https://.../product.webp"></textarea><small class="muted">첫 번째 이미지가 제품 목록 대표 이미지로 표시됩니다. 직접 URL을 입력하거나 위에서 파일을 업로드할 수 있습니다.</small></div>
 <div class="field"><div class="topline"><label>상세 사양</label><button type="button" class="btn secondary" id="addSpec">+ 사양 추가</button></div><div id="specRows"></div></div>
 <div class="field"><label><input id="published" type="checkbox" checked style="width:auto;margin-right:8px">저장 후 공개 게시</label></div>
 <div class="actions"><button class="btn" id="saveBtn" type="submit">제품 저장</button><button class="btn secondary" id="cancelEdit" type="button">취소</button></div>
@@ -54,6 +54,32 @@ function renderList(){const list=$('productList');if(!records.length){list.inner
 async function togglePublish(id){const p=records.find(x=>String(x.id)===id);if(!p)return;const {error}=await db.from('products').update({is_published:!p.is_published}).eq('id',p.id);if(error){status('listStatus','게시 상태 변경 실패: '+error.message,'error');return;}await loadProducts();}
 async function deleteProduct(id){const p=records.find(x=>String(x.id)===id);if(!p||!confirm('제품 "'+(p.name||p.model||'')+'" 을(를) 삭제할까요? 이 작업은 되돌리기 어렵습니다.'))return;const {error}=await db.from('products').delete().eq('id',p.id);if(error){status('listStatus','삭제 실패: '+error.message,'error');return;}if($('productId').value===id)fillForm();await loadProducts();}
 $('loginForm').addEventListener('submit',async e=>{e.preventDefault();status('loginStatus','로그인 확인 중…');const {data,error}=await db.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error){status('loginStatus','로그인 실패: '+error.message,'error');return;}try{if(!await isAdmin(data.user)){await db.auth.signOut();status('loginStatus','로그인한 계정에 관리자 권한이 없습니다.','error');return;}currentUser=data.user;$('loginPanel').classList.add('hidden');$('adminArea').classList.remove('hidden');$('logout').classList.remove('hidden');await loadProducts();}catch(err){await db.auth.signOut();status('loginStatus',err.message,'error');}});
+$('uploadImages').addEventListener('click',async()=>{
+ if(!currentUser){status('uploadStatus','먼저 관리자 로그인을 해주세요.','error');return;}
+ const files=Array.from($('imageFiles').files||[]);
+ if(!files.length){status('uploadStatus','업로드할 이미지 파일을 선택해주세요.','error');return;}
+ const allowed=['image/jpeg','image/png','image/webp','image/gif'];
+ for(const file of files){if(!allowed.includes(file.type)){status('uploadStatus','지원하지 않는 이미지 형식입니다: '+file.name,'error');return;}if(file.size>10*1024*1024){status('uploadStatus','파일당 최대 10MB까지 업로드할 수 있습니다: '+file.name,'error');return;}}
+ const btn=$('uploadImages');btn.disabled=true;
+ const urls=$('images').value.split('\\n').map(v=>v.trim()).filter(Boolean);
+ let uploaded=0;
+ try{
+  for(const file of files){
+   const safeName=file.name.normalize('NFKD').replace(/[^a-zA-Z0-9._-]+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'')||'product-image';
+   const path='products/'+Date.now()+'-'+Math.random().toString(36).slice(2,9)+'-'+safeName;
+   status('uploadStatus','업로드 중… '+(uploaded+1)+'/'+files.length);
+   const {error}=await db.storage.from('dm-public-media').upload(path,file,{contentType:file.type,cacheControl:'3600',upsert:false});
+   if(error)throw new Error(file.name+': '+error.message);
+   const {data}=db.storage.from('dm-public-media').getPublicUrl(path);
+   if(data?.publicUrl){urls.push(data.publicUrl);uploaded++;}
+   else throw new Error('공개 이미지 주소를 만들지 못했습니다: '+file.name);
+  }
+  $('images').value=[...new Set(urls)].join('\\n');
+  $('imageFiles').value='';
+  status('uploadStatus',uploaded+'개 이미지 업로드 완료. 제품 정보 저장 버튼을 눌러 주소를 제품에 연결하세요.','ok');
+ }catch(err){status('uploadStatus','이미지 업로드 실패: '+err.message,'error');}
+ finally{btn.disabled=false;}
+});
 $('productForm').addEventListener('submit',async e=>{e.preventDefault();if(!currentUser)return;const images=$('images').value.split('\n').map(s=>s.trim()).filter(Boolean);if(images.some(s=>!/^https?:\/\//i.test(s))){status('formStatus','이미지 주소는 http:// 또는 https:// 로 시작해야 합니다.','error');return;}const category=$('category').value;const payload={name:$('name').value.trim(),model:$('model').value.trim(),category:category.startsWith('filter-')?'filter':category,subcategory:$('subcategory').value.trim(),description:$('description').value.trim(),specifications:readSpecs(),image_urls:images,is_published:$('published').checked};const id=$('productId').value;status('formStatus','저장 중…');const result=id?await db.from('products').update(payload).eq('id',id):await db.from('products').insert(payload);if(result.error){status('formStatus','저장 실패: '+result.error.message,'error');return;}status('formStatus','저장했습니다. 기존 products.html의 고정 제품 데이터는 아직 별도로 이전·검증해야 합니다.','ok');fillForm();await loadProducts();});
 async function importLegacyProducts(){
  if(!currentUser)return;
