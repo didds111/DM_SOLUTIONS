@@ -313,10 +313,8 @@ footer{background:#0a1730;color:#b9c4d2;padding:38px 0;font-size:13px}
     <div class="section-kicker">PORTFOLIO</div>
     <h2 class="section-title">현장에서 확인하는<br>DM SOLUTION의 기술력</h2>
     <p class="section-desc"></p>
-    <div class="portfolio-grid">
-      <article class="portfolio-card"><div class="portfolio-photo">현장 사진 영역</div><div class="portfolio-body"><strong>프로젝트 01</strong><span>현장명 · 제품 · 설치 내용</span></div></article>
-      <article class="portfolio-card"><div class="portfolio-photo">현장 사진 영역</div><div class="portfolio-body"><strong>프로젝트 02</strong><span>현장명 · 제품 · 설치 내용</span></div></article>
-      <article class="portfolio-card"><div class="portfolio-photo">현장 사진 영역</div><div class="portfolio-body"><strong>프로젝트 03</strong><span>현장명 · 제품 · 설치 내용</span></div></article>
+    <div class="portfolio-grid" id="portfolio-live-grid">
+      <div class="portfolio-card" id="portfolio-loading"><div class="portfolio-photo">포트폴리오 불러오는 중</div><div class="portfolio-body"><strong>등록된 프로젝트</strong><span>관리자 페이지에서 공개한 자료가 표시됩니다.</span></div></div>
     </div>
   </div>
 </section>
@@ -399,6 +397,36 @@ document.getElementById('inquiryForm').addEventListener('submit', function(event
 
 
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(async function(){
+  const SUPABASE_URL = "https://cbsayrtkctaotffuhwmk.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_ccT_lYo9FTCeoxalnTS4og_ebYjDMZr";
+  const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  const grid = document.getElementById('portfolio-live-grid');
+  if (!grid) return;
+  const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  try {
+    const {data, error} = await client.from('portfolio').select('id,title,description,image_urls,project_date').eq('is_published', true).order('sort_order', {ascending:true}).order('created_at', {ascending:false});
+    if (error) throw error;
+    if (!data || !data.length) {
+      grid.innerHTML = '<div class="portfolio-card"><div class="portfolio-photo">준비 중</div><div class="portfolio-body"><strong>포트폴리오 준비 중입니다.</strong><span>새 프로젝트가 등록되면 이곳에 소개됩니다.</span></div></div>';
+      return;
+    }
+    grid.innerHTML = data.map(item => {
+      const images = Array.isArray(item.image_urls) ? item.image_urls : [];
+      const photo = images.length ? '<img src="' + esc(images[0]) + '" alt="' + esc(item.title) + '" loading="lazy" style="width:100%;height:210px;object-fit:cover;display:block">' : '<div class="portfolio-photo">현장 사진</div>';
+      const date = item.project_date ? ' · ' + esc(item.project_date) : '';
+      return '<article class="portfolio-card">' + photo + '<div class="portfolio-body"><strong>' + esc(item.title) + '</strong><span>' + esc(item.description || 'DM SOLUTION 프로젝트') + date + '</span>' + (images.length > 1 ? '<div class="portfolio-extra-images" style="display:flex;gap:6px;margin-top:10px;overflow:auto">' + images.slice(1).map(u => '<img src="' + esc(u) + '" alt="" loading="lazy" style="width:64px;height:52px;object-fit:cover;border-radius:5px;flex:none">').join('') + '</div>' : '') + '</div></article>';
+    }).join('');
+  } catch (err) {
+    grid.innerHTML = '<div class="portfolio-card"><div class="portfolio-photo">일시적으로 불러올 수 없습니다</div><div class="portfolio-body"><strong>포트폴리오</strong><span>잠시 후 다시 확인해 주세요.</span></div></div>';
+    console.error('Portfolio load failed:', err);
+  }
+})();
+</script>
 
 </body>
 </html>
