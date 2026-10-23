@@ -95,7 +95,7 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);border
  <div class="catalog-grid" id="catalogGrid"><div class="catalog-message">제품 목록을 불러오는 중입니다.</div></div>
  <div class="catalog-message catalog-empty hidden" id="catalogEmpty">검색 조건에 맞는 제품이 없습니다.</div>
  <div class="catalog-message catalog-error hidden" id="catalogError">제품 정보를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</div>
-</main><div class="modal-backdrop" id="modalBackdrop" onclick="if(event.target===this)closeDetail()"><div class="modal"><div class="modal-head"><h2 id="modalTitle">제품 상세 사양</h2><button aria-label="닫기" class="close" onclick="closeDetail()">×</button></div><div id="modalSpecs"></div></div></div><footer class="footer"><div>DM SOLUTION · Industrial Cooling Solutions</div><div style="margin-top:10px"><a href="admin.html" style="color:inherit;opacity:.75;text-decoration:none;font-size:12px">관리자</a></div></footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</main><div class="modal-backdrop" id="modalBackdrop" onclick="if(event.target===this)closeDetail()"><div class="modal"><div class="modal-head"><h2 id="modalTitle">제품 상세 사양</h2><button aria-label="닫기" class="close" onclick="closeDetail()">×</button></div><div id="modalSpecs"></div></div></div><footer class="footer"><div>DM SOLUTION · Industrial Cooling Solutions</div></footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (async function(){
  const client=window.supabase.createClient("https://cbsayrtkctaotffuhwmk.supabase.co","sb_publishable_ccT_lYo9FTCeoxalnTS4og_ebYjDMZr");
