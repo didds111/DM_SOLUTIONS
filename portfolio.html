@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>포트폴리오 | DM SOLUTION</title>
+<meta name="description" content="DM SOLUTION의 산업용 냉각 설비 프로젝트 및 설치 사례를 확인하세요.">
+<style>
+:root{--navy:#0b356d;--deep:#0b1730;--blue:#1b5798;--line:#e6eaf0;--text:#101827;--muted:#687383;--bg:#f7f9fc}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,"Noto Sans KR",sans-serif;color:var(--text);background:#fff}a{color:inherit;text-decoration:none}.container{width:min(1180px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}.header-inner{height:82px;display:flex;align-items:center;justify-content:space-between;gap:30px}.logo{width:225px;height:auto;display:block}nav{display:flex;gap:34px;font-size:15px;font-weight:700}nav a:hover{color:var(--navy)}.header-cta{background:var(--navy);color:#fff;padding:15px 24px;border-radius:8px;font-weight:800}
+.hero{background:var(--bg);padding:88px 0 52px}.eyebrow,.section-kicker{font-size:13px;letter-spacing:4px;color:var(--blue);font-weight:800;margin-bottom:14px}.hero h1{font-size:clamp(38px,5vw,60px);letter-spacing:-2px;line-height:1.15;margin:0 0 20px}.hero p{font-size:18px;line-height:1.8;color:var(--muted);margin:0}
+main{padding:46px 0 100px;background:var(--bg);min-height:380px}.portfolio-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.portfolio-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}.portfolio-photo{height:260px;background:linear-gradient(135deg,#e8edf3,#cbd5e1);display:flex;align-items:center;justify-content:center;color:#778292;font-size:14px}.portfolio-photo img{width:100%;height:100%;object-fit:cover;display:block}.portfolio-body{padding:22px}.portfolio-body strong{display:block;font-size:19px;margin-bottom:9px}.portfolio-body p{margin:0;color:var(--muted);font-size:14px;line-height:1.7;white-space:pre-line}.portfolio-date{display:block;color:#8993a1;font-size:12px;margin-top:12px}.portfolio-extra-images{display:flex;gap:8px;overflow:auto;margin-top:14px}.portfolio-extra-images img{width:72px;height:60px;object-fit:cover;border-radius:6px;flex:none}.empty{padding:52px 20px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:14px;color:var(--muted);line-height:1.8}
+footer{background:#0a1730;color:#b9c4d2;padding:38px 0;font-size:13px}.footer-inner{line-height:1.9}
+@media(max-width:900px){nav{display:none}.header-inner{height:70px}.logo{width:190px}.header-cta{padding:12px 17px;font-size:14px}.portfolio-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{padding:66px 0 42px}}
+@media(max-width:600px){.container{width:calc(100% - 28px)}.portfolio-grid{grid-template-columns:1fr;gap:14px}.portfolio-photo{height:230px}.hero h1{font-size:38px}.hero p{font-size:16px}}
+</style>
+</head>
+<body>
+<header><div class="container header-inner">
+<a href="index.html#home"><img class="logo" src="images/p1_01.png" alt="DM SOLUTION"></a>
+<nav><a href="index.html#products">PRODUCTS</a><a href="index.html#solution">SOLUTION</a><a href="portfolio.html">PORTFOLIO</a><a href="index.html#about">ABOUT</a><a href="index.html#contact">CONTACT</a></nav>
+<a class="header-cta" href="index.html#contact">견적 문의 →</a>
+</div></header>
+<section class="hero"><div class="container"><div class="eyebrow">PORTFOLIO</div><h1>현장에서 확인하는<br>DM SOLUTION의 기술력</h1><p>프로젝트와 설치 사례를 소개합니다.</p></div></section>
+<main><div class="container"><div class="portfolio-grid" id="portfolio-grid"><div class="empty">포트폴리오를 불러오는 중입니다.</div></div></div></main>
+<footer><div class="container footer-inner">사업자등록번호 561-13-02556 | 대표전화 070-8866-8936 | FAX. 032-232-8955 | 이메일 <a href="mailto:dmsa0113@daum.net">dmsa0113@daum.net</a><br>주소 | (10008) 경기도 김포시 하성면 하성로570번길 231<br>© 디엠솔루션</div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(async function(){
+ const client=window.supabase.createClient("https://cbsayrtkctaotffuhwmk.supabase.co","sb_publishable_ccT_lYo9FTCeoxalnTS4og_ebYjDMZr");
+ const grid=document.getElementById('portfolio-grid');
+ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ try{
+  const {data,error}=await client.from('portfolio').select('id,title,description,image_urls,project_date').eq('is_published',true).order('sort_order',{ascending:true}).order('created_at',{ascending:false});
+  if(error)throw error;
+  if(!data||!data.length){grid.innerHTML='<div class="empty">아직 공개된 포트폴리오가 없습니다.<br>새 프로젝트가 등록되면 이곳에 소개됩니다.</div>';return;}
+  grid.innerHTML=data.map(p=>{
+   const imgs=Array.isArray(p.image_urls)?p.image_urls:[];
+   const photo=imgs.length?'<div class="portfolio-photo"><img src="'+esc(imgs[0])+'" alt="'+esc(p.title)+'" loading="lazy"></div>':'<div class="portfolio-photo">현장 사진</div>';
+   const more=imgs.length>1?'<div class="portfolio-extra-images">'+imgs.slice(1).map(u=>'<img src="'+esc(u)+'" alt="'+esc(p.title)+' 추가 사진" loading="lazy">').join('')+'</div>':'';
+   return '<article class="portfolio-card">'+photo+'<div class="portfolio-body"><strong>'+esc(p.title)+'</strong><p>'+esc(p.description||'')+'</p>'+(p.project_date?'<span class="portfolio-date">'+esc(p.project_date)+'</span>':'')+more+'</div></article>';
+  }).join('');
+ }catch(e){grid.innerHTML='<div class="empty">포트폴리오를 불러오지 못했습니다.<br>잠시 후 다시 확인해 주세요.</div>';console.error(e);}
+})();
+</script>
+</body></html>
