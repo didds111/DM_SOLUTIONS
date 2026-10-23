@@ -1,0 +1,954 @@
+[
+  {
+    "name": "KTS-750ESS",
+    "model": "KTS-750ESS",
+    "category": "panel",
+    "subcategory": "ESS(옥외형)",
+    "description": "",
+    "specifications": {
+      "냉각능력": "750W",
+      "난방능력": "500W",
+      "전원": "1Ph 220V 50/60Hz",
+      "소비전력": "350W",
+      "외형": "400(W) × 260(D) × 750(H)",
+      "중량": "34kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_01.webp"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-1000ESS",
+    "model": "KTS-1000ESS",
+    "category": "panel",
+    "subcategory": "ESS(옥외형)",
+    "description": "",
+    "specifications": {
+      "냉각능력": "1000W",
+      "난방능력": "500W",
+      "전원": "1Ph 220V 50/60Hz",
+      "소비전력": "385W",
+      "외형": "400(W) × 260(D) × 750(H)",
+      "중량": "35kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_01.webp"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-1500ESS",
+    "model": "KTS-1500ESS",
+    "category": "panel",
+    "subcategory": "ESS(옥외형)",
+    "description": "",
+    "specifications": {
+      "냉각능력": "1600W",
+      "난방능력": "1000W",
+      "전원": "1Ph 220V 50/60Hz",
+      "소비전력": "860W",
+      "외형": "400(W) × 260(D) × 950(H)",
+      "중량": "45kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_02.webp"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-2000ESS",
+    "model": "KTS-2000ESS",
+    "category": "panel",
+    "subcategory": "ESS(옥외형)",
+    "description": "",
+    "specifications": {
+      "냉각능력": "2300W",
+      "난방능력": "1000W",
+      "전원": "1Ph 220V 50/60Hz",
+      "소비전력": "945W",
+      "외형": "400(W) × 260(D) × 950(H)",
+      "중량": "48kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_02.webp"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-2500ESS",
+    "model": "KTS-2500ESS",
+    "category": "panel",
+    "subcategory": "ESS(옥외형)",
+    "description": "",
+    "specifications": {
+      "냉각능력": "2600W",
+      "난방능력": "1500W",
+      "전원": "1Ph 220V 50/60Hz",
+      "소비전력": "990W",
+      "외형": "400(W) × 260(D) × 1300(H)",
+      "중량": "65kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_03.webp"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-3000ESS",
+    "model": "KTS-3000ESS",
+    "category": "panel",
+    "subcategory": "ESS(옥외형)",
+    "description": "",
+    "specifications": {
+      "냉각능력": "3300W",
+      "난방능력": "1500W",
+      "전원": "1Ph 220V 50/60Hz",
+      "소비전력": "1010W",
+      "외형": "400(W) × 260(D) × 1300(H)",
+      "중량": "70kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_03.webp"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-4500ESS",
+    "model": "KTS-4500ESS",
+    "category": "panel",
+    "subcategory": "ESS(옥외형)",
+    "description": "",
+    "specifications": {
+      "냉각능력": "4800W",
+      "난방능력": "2000W",
+      "전원": "1Ph 220V 50/60Hz",
+      "소비전력": "2000W",
+      "외형": "500(W) × 400(D) × 1600(H)",
+      "중량": "115kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_04.webp"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-5000ESS",
+    "model": "KTS-5000ESS",
+    "category": "panel",
+    "subcategory": "ESS(옥외형)",
+    "description": "",
+    "specifications": {
+      "냉각능력": "5300W",
+      "난방능력": "2000W",
+      "전원": "1Ph 220V 50/60Hz",
+      "소비전력": "2145W",
+      "외형": "600(W) × 340(D) × 1600(H)",
+      "중량": "125kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_05.webp"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-750ES",
+    "model": "KTS-750ES",
+    "category": "panel",
+    "subcategory": "ES(에너지 절감형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "에너지절감형",
+      "냉방능력": "750W",
+      "차단기": "10A",
+      "전원": "1Ph 220V, 50/60Hz",
+      "소비전력": "410W",
+      "외형치수": "400(W)x280(D)x750(H)",
+      "중량": "36kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_06.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-1000ES",
+    "model": "KTS-1000ES",
+    "category": "panel",
+    "subcategory": "ES(에너지 절감형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "에너지절감형",
+      "냉방능력": "1000W",
+      "차단기": "10A",
+      "전원": "1Ph 220V, 50/60Hz",
+      "소비전력": "560W",
+      "외형치수": "400(W)x280(D)x750(H)",
+      "중량": "36kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_06.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-1500ES",
+    "model": "KTS-1500ES",
+    "category": "panel",
+    "subcategory": "ES(에너지 절감형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "에너지절감형",
+      "냉방능력": "1500W",
+      "차단기": "15A",
+      "전원": "1Ph 220V, 50/60Hz",
+      "소비전력": "660W",
+      "외형치수": "400(W)x280(D)x950(H)",
+      "중량": "44kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_07.webp"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-2000ES",
+    "model": "KTS-2000ES",
+    "category": "panel",
+    "subcategory": "ES(에너지 절감형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "에너지절감형",
+      "냉방능력": "2000W",
+      "차단기": "20A",
+      "전원": "1Ph 220V, 50/60Hz",
+      "소비전력": "730W",
+      "외형치수": "400(W)x280(D)x950(H)",
+      "중량": "44kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_07.webp"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-2500ES",
+    "model": "KTS-2500ES",
+    "category": "panel",
+    "subcategory": "ES(에너지 절감형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "에너지절감형",
+      "냉방능력": "2500W",
+      "차단기": "20A",
+      "전원": "1Ph 220V, 50/60Hz",
+      "소비전력": "980W",
+      "외형치수": "400(W)x280(D)x1300(H)",
+      "중량": "67kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_08.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-3000ES",
+    "model": "KTS-3000ES",
+    "category": "panel",
+    "subcategory": "ES(에너지 절감형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "에너지절감형",
+      "냉방능력": "3000W",
+      "차단기": "30A",
+      "전원": "1Ph 220V, 50/60Hz",
+      "소비전력": "1210W",
+      "외형치수": "400(W)x260(D)x1300(H)",
+      "중량": "67kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_08.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-4500ES",
+    "model": "KTS-4500ES",
+    "category": "panel",
+    "subcategory": "ES(에너지 절감형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "에너지절감형",
+      "냉방능력": "4500W",
+      "차단기": "30A",
+      "전원": "1Ph 220V, 50/60Hz",
+      "소비전력": "1710W",
+      "외형치수": "500(W)x410(D)x1600(H)",
+      "중량": "89kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_08.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-5000ES",
+    "model": "KTS-5000ES",
+    "category": "panel",
+    "subcategory": "ES(에너지 절감형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "에너지절감형",
+      "냉방능력": "5000W",
+      "차단기": "30A",
+      "전원": "1Ph 220V, 50/60Hz",
+      "소비전력": "1910W",
+      "외형치수": "500(W)x410(D)x1600(H)",
+      "중량": "89kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_08.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "LCP-KTCP 15",
+    "model": "LCP-KTCP 15",
+    "category": "liquid",
+    "subcategory": "",
+    "description": "",
+    "specifications": {
+      "냉각출력": "0 ~ 13Kw",
+      "냉각능력": "11,200Kcal/h",
+      "난방능력": "2Kw",
+      "전 원": "1Ph 220V, 50/60Hz 겸용",
+      "외 형": "400(W)x998(D)x1376(H)",
+      "소비전력": "3.5Kw"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_09.webp"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "LCP-KTCP 30",
+    "model": "LCP-KTCP 30",
+    "category": "liquid",
+    "subcategory": "",
+    "description": "",
+    "specifications": {
+      "냉각출력": "0 ~ 26Kw",
+      "냉각능력": "22,400Kcal/h",
+      "난방능력": "4Kw",
+      "전 원": "1Ph 220V, 50/60Hz 겸용",
+      "외 형": "400(W)x1698(D)x1376(H)",
+      "소비전력": "6Kw"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_10.webp"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KWC-3AP(3RT)",
+    "model": "KWC-3AP(3RT)",
+    "category": "liquid",
+    "subcategory": "",
+    "description": "",
+    "specifications": {
+      "규 격": "3마력(3RT)",
+      "냉 각 능 력": "8,400Kcal/h",
+      "작동수압범위": "2 ~ 5Bar",
+      "온도제어범위": "5 ~ 30°C(5°C 이하 부동액 첨가)",
+      "사용가능유체": "물(수도물, 증류수, 청수) 등",
+      "최대물순환량": "40Max(M)",
+      "히타(투입히타)": "2Kw",
+      "외 형": "600(W)x1070(D)x1038(H)",
+      "소 비 전 력": "6Kw"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_11.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KWC-5AP(5RT)",
+    "model": "KWC-5AP(5RT)",
+    "category": "liquid",
+    "subcategory": "",
+    "description": "",
+    "specifications": {
+      "규 격": "5마력(5RT)",
+      "냉 각 능 력": "14,000Kcal/h",
+      "작동수압범위": "2 ~ 6Bar",
+      "최대물순환량": "52Max(M)",
+      "히타(투입히타)": "2Kw",
+      "외 형": "700(W)x1230(D)x1118(H)",
+      "소 비 전 력": "10Kw"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_11.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KWC-7.5AP(7.5RT)",
+    "model": "KWC-7.5AP(7.5RT)",
+    "category": "liquid",
+    "subcategory": "",
+    "description": "",
+    "specifications": {
+      "규 격": "7.5마력(7.5RT)",
+      "냉 각 능 력": "21,000Kcal/h",
+      "작동수압범위": "2 ~ 6Bar",
+      "최대물순환량": "52Max(M)",
+      "히타(투입히타)": "2Kw",
+      "외 형": "700(W)x1380(D)x1400(H)",
+      "소 비 전 력": "12Kw"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_11.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KWC-1A",
+    "model": "KWC-1A",
+    "category": "water",
+    "subcategory": "",
+    "description": "",
+    "specifications": {
+      "압출기출력": "0.75KW",
+      "냉각능력": "2800Kcal/h",
+      "펌프출력": "0.13KW",
+      "순환량": "5~30Liter",
+      "탱크용량": "20Liter",
+      "냉매": "R-22, R-407",
+      "온도": "5°C ~ 35°C",
+      "Fan Motor": "0.1KW",
+      "외형": "470(W)x760(D)x870(H)"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_12.webp"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-300S",
+    "model": "KTS-300S",
+    "category": "panel",
+    "subcategory": "S(측면/정면부착형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "측면/정면부착형",
+      "냉각능력": "300W",
+      "차단기용량": "10A",
+      "전원": "1Ph 220V, 50/60Hz 겸용",
+      "소비전력": "600W",
+      "외형": "300(W)x190(D)x550(H)",
+      "무게": "22kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_13.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-500S",
+    "model": "KTS-500S",
+    "category": "panel",
+    "subcategory": "S(측면/정면부착형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "측면/정면부착형",
+      "냉각능력": "500W",
+      "차단기용량": "10A",
+      "전원": "1Ph 220V, 50/60Hz 겸용",
+      "소비전력": "700W",
+      "외형": "350(W)x190(D)x570(H)",
+      "무게": "25kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_13.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-750S",
+    "model": "KTS-750S",
+    "category": "panel",
+    "subcategory": "S(측면/정면부착형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "측면/정면부착형",
+      "냉각능력": "750W",
+      "차단기용량": "15A",
+      "전원": "1Ph 220V, 50/60Hz 겸용",
+      "소비전력": "800W",
+      "외형": "400(W)x190(D)x670(H)",
+      "무게": "34kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_13.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-1000S",
+    "model": "KTS-1000S",
+    "category": "panel",
+    "subcategory": "S(측면/정면부착형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "측면/정면부착형",
+      "냉각능력": "1000W",
+      "차단기용량": "15A",
+      "전원": "1Ph 220V, 50/60Hz 겸용",
+      "소비전력": "980W",
+      "외형": "400(W)x190(D)x950(H)",
+      "무게": "38kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_14.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-1500S",
+    "model": "KTS-1500S",
+    "category": "panel",
+    "subcategory": "S(측면/정면부착형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "측면/정면부착형",
+      "냉각능력": "1500W",
+      "차단기용량": "20A",
+      "전원": "1Ph 220V, 50/60Hz 겸용",
+      "소비전력": "1350W",
+      "외형": "400(W)x230(D)x1050(H)",
+      "무게": "46kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_15.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-2000S",
+    "model": "KTS-2000S",
+    "category": "panel",
+    "subcategory": "S(측면/정면부착형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "측면/정면부착형",
+      "냉각능력": "2000W",
+      "차단기용량": "20A",
+      "전원": "1Ph 220V, 50/60Hz 겸용",
+      "소비전력": "1650W",
+      "외형": "400(W)x230(D)x1050(H)",
+      "무게": "46kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_15.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-500X",
+    "model": "KTS-500X",
+    "category": "panel",
+    "subcategory": "X(반매립형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "반매립형",
+      "냉각능력": "500W",
+      "차단기용량": "10A",
+      "전원": "1Ph 220V, 50/60Hz 겸용",
+      "소비전력": "700W",
+      "외형": "350(W)x190(D)x570(H)",
+      "무게": "25kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_13.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-1000X",
+    "model": "KTS-1000X",
+    "category": "panel",
+    "subcategory": "X(반매립형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "반매립형",
+      "냉각능력": "1000W",
+      "차단기용량": "15A",
+      "전원": "1Ph 220V, 50/60Hz 겸용",
+      "소비전력": "980W",
+      "외형": "400(W)x190(D)x950(H)",
+      "무게": "38kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_14.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-1500X",
+    "model": "KTS-1500X",
+    "category": "panel",
+    "subcategory": "X(반매립형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "반매립형",
+      "냉각능력": "1500W",
+      "차단기용량": "20A",
+      "전원": "1Ph 220V, 50/60Hz 겸용",
+      "소비전력": "1350W",
+      "외형": "400(W)x230(D)x1050(H)",
+      "무게": "46kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_15.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-2000X",
+    "model": "KTS-2000X",
+    "category": "panel",
+    "subcategory": "X(반매립형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "반매립형",
+      "냉각능력": "2000W",
+      "차단기용량": "20A",
+      "전원": "1Ph 220V, 50/60Hz 겸용",
+      "소비전력": "1650W",
+      "외형": "400(W)x230(D)x1050(H)",
+      "무게": "46kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_15.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-1000R",
+    "model": "KTS-1000R",
+    "category": "panel",
+    "subcategory": "R(천정형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "천정형",
+      "냉각능력": "1000W",
+      "차단기용량": "15A",
+      "전원": "1Ph 220V, 50/60Hz 겸용",
+      "소비전력": "980W",
+      "외형": "400(W)x190(D)x950(H)",
+      "무게": "38kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_14.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-1500R",
+    "model": "KTS-1500R",
+    "category": "panel",
+    "subcategory": "R(천정형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "천정형",
+      "냉각능력": "1500W",
+      "차단기용량": "20A",
+      "전원": "1Ph 220V, 50/60Hz 겸용",
+      "소비전력": "1350W",
+      "외형": "400(W)x230(D)x1050(H)",
+      "무게": "46kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_15.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KTS-2000R",
+    "model": "KTS-2000R",
+    "category": "panel",
+    "subcategory": "R(천정형)",
+    "description": "",
+    "specifications": {
+      "제품 유형": "천정형",
+      "냉각능력": "2000W",
+      "차단기용량": "20A",
+      "전원": "1Ph 220V, 50/60Hz 겸용",
+      "소비전력": "1650W",
+      "외형": "400(W)x230(D)x1050(H)",
+      "무게": "46kg"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_15.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "Oil Cooler",
+    "model": "Oil Cooler",
+    "category": "oil",
+    "subcategory": "",
+    "description": "",
+    "specifications": {
+      "모델명": "Oil Cooler",
+      "냉각출력": "",
+      "냉각능력": "",
+      "난방능력": "",
+      "전원": "",
+      "외형": "",
+      "소비전력": ""
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_16.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "팬쿨러 KFC-09 S",
+    "model": "KFC-09 S",
+    "category": "fan",
+    "subcategory": "",
+    "description": "",
+    "specifications": {
+      "모델명": "KFC-09 S",
+      "냉각능력": "8/9 W/K",
+      "전원": "220V, 50/60Hz",
+      "정격전류": "0.26 A",
+      "외형": "170(W) × 617(H) × 86(D) mm",
+      "무게": "4 kg",
+      "팬 모터": "2 EA"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_17.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "팬쿨러 KFC-12 S",
+    "model": "KFC-12 S",
+    "category": "fan",
+    "subcategory": "",
+    "description": "",
+    "specifications": {
+      "모델명": "KFC-12 S",
+      "냉각능력": "10/12 W/K",
+      "전원": "220V, 50/60Hz",
+      "정격전류": "0.26 A",
+      "외형": "310(W) × 617(H) × 86(D) mm",
+      "무게": "5.6 kg",
+      "팬 모터": "2 EA"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_17.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "팬쿨러 KFC-16 S",
+    "model": "KFC-16 S",
+    "category": "fan",
+    "subcategory": "",
+    "description": "",
+    "specifications": {
+      "모델명": "KFC-16 S",
+      "냉각능력": "13/16 W/K",
+      "전원": "220V, 50/60Hz",
+      "정격전류": "0.44 A",
+      "외형": "310(W) × 617(H) × 86(D) mm",
+      "무게": "6.7 kg",
+      "팬 모터": "4 EA"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_17.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "팬쿨러 KFC-15 S",
+    "model": "KFC-15 S",
+    "category": "fan",
+    "subcategory": "",
+    "description": "",
+    "specifications": {
+      "모델명": "KFC-15 S",
+      "냉각능력": "12/15 W/K",
+      "전원": "220V, 50/60Hz",
+      "정격전류": "0.46 A",
+      "외형": "206(W) × 730(H) × 86(D) mm",
+      "무게": "5.4 kg",
+      "팬 모터": "2 EA"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_17.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "팬쿨러 KFC-25 S",
+    "model": "KFC-25 S",
+    "category": "fan",
+    "subcategory": "",
+    "description": "",
+    "specifications": {
+      "모델명": "KFC-25 S",
+      "냉각능력": "21/25 W/K",
+      "전원": "220V, 50/60Hz",
+      "정격전류": "0.46 A",
+      "외형": "380(W) × 730(H) × 86(D) mm",
+      "무게": "7.7 kg",
+      "팬 모터": "2 EA"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_17.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "팬쿨러 KFC-34 S",
+    "model": "KFC-34 S",
+    "category": "fan",
+    "subcategory": "",
+    "description": "",
+    "specifications": {
+      "모델명": "KFC-34 S",
+      "냉각능력": "28/34 W/K",
+      "전원": "220V, 50/60Hz",
+      "정격전류": "0.42 A",
+      "외형": "380(W) × 730(H) × 86(D) mm",
+      "무게": "7.7 kg",
+      "팬 모터": "2 EA"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_17.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "팬쿨러 KFC-42 S",
+    "model": "KFC-42 S",
+    "category": "fan",
+    "subcategory": "",
+    "description": "",
+    "specifications": {
+      "모델명": "KFC-42 S",
+      "냉각능력": "36/42 W/K",
+      "전원": "220V, 50/60Hz",
+      "정격전류": "0.84 A",
+      "외형": "380(W) × 730(H) × 86(D) mm",
+      "무게": "9.2 kg",
+      "팬 모터": "4 EA"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_17.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KFS-N30/FHG-150",
+    "model": "KFS-N30/FHG-150",
+    "category": "filter",
+    "subcategory": "측면",
+    "description": "",
+    "specifications": {
+      "모델명": "KFS-N30/FHG-150",
+      "전원": "440V ~ 3Ph, 50/60Hz",
+      "외형": "1100(W) × 3230(D) × 2055(H)"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_18.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KFS-N60/FHG-200",
+    "model": "KFS-N60/FHG-200",
+    "category": "filter",
+    "subcategory": "측면",
+    "description": "",
+    "specifications": {
+      "모델명": "KFS-N60/FHG-200",
+      "전원": "440V ~ 3Ph, 50/60Hz",
+      "외형": "1100(W) × 3230(D) × 2055(H)"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_18.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KFS-N70/FHG-250",
+    "model": "KFS-N70/FHG-250",
+    "category": "filter",
+    "subcategory": "측면",
+    "description": "",
+    "specifications": {
+      "모델명": "KFS-N70/FHG-250",
+      "전원": "440V ~ 3Ph, 50/60Hz",
+      "외형": "1100(W) × 3230(D) × 2055(H)"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_18.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KFS-N90/FHG-300",
+    "model": "KFS-N90/FHG-300",
+    "category": "filter",
+    "subcategory": "측면",
+    "description": "",
+    "specifications": {
+      "모델명": "KFS-N90/FHG-300",
+      "전원": "440V ~ 3Ph, 50/60Hz",
+      "외형": "1100(W) × 3230(D) × 2055(H)"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_18.jpg"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KFT-130",
+    "model": "KFT-130",
+    "category": "filter",
+    "subcategory": "천장",
+    "description": "",
+    "specifications": {
+      "모델명": "KFT-130",
+      "풍량": "1300 m³/h",
+      "전원": "220V, 50/60Hz",
+      "외형": "440(W) × 440(D) × 145(H)"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_19.webp"
+    ],
+    "is_published": true
+  },
+  {
+    "name": "KFT-270",
+    "model": "KFT-270",
+    "category": "filter",
+    "subcategory": "천장",
+    "description": "",
+    "specifications": {
+      "모델명": "KFT-270",
+      "풍량": "2700 m³/h",
+      "전원": "220V, 50/60Hz",
+      "외형": "520(W) × 520(D) × 240(H)"
+    },
+    "image_urls": [
+      "https://dmsolutions-official.netlify.app/images/p2_19.webp"
+    ],
+    "is_published": true
+  }
+]
