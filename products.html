@@ -89,15 +89,27 @@ else if(hash==='filter-side'){setCategory('filter');document.querySelector('[dat
     {keys:['filter-side','filter','팬&필터(측면)','팬앤필터(측면)','팬&필터 측면','팬필터 측면','측면형 팬&필터'],id:'filter-side-intro',cat:'filter'},
     {keys:['팬&필터(천장)','팬앤필터(천장)','팬&필터 천장','팬필터 천장','천장형 팬&필터'],id:'filter-ceiling-intro',cat:'filter'}
   ];
-  function getTarget(category){
+  function getTarget(category,subcategory){
     const value=String(category||'').trim().toLowerCase();
+    const sub=String(subcategory||'').trim().toLowerCase();
+    if(value==='panel'||value==='판넬쿨러'||value==='판넬 쿨러'){
+      if(sub.includes('es') && !sub.includes('ess')) return categoryTargets.find(t=>t.id==='panel-es');
+      if(sub.includes('측면')||sub.includes('정면')||/^s(?:\b|\s|\()/i.test(sub)) return categoryTargets.find(t=>t.id==='panel-s');
+      if(sub.includes('반매립')||/^x(?:\b|\s|\()/i.test(sub)) return categoryTargets.find(t=>t.id==='panel-x');
+      if(sub.includes('천장')||sub.includes('천정')||/^r(?:\b|\s|\()/i.test(sub)) return categoryTargets.find(t=>t.id==='panel-r');
+      return categoryTargets.find(t=>t.id==='panel-intro');
+    }
+    if(value==='filter'){
+      if(sub.includes('천장')||sub.includes('천정')||sub==='ceiling') return categoryTargets.find(t=>t.id==='filter-ceiling-intro');
+      return categoryTargets.find(t=>t.id==='filter-side-intro');
+    }
     return categoryTargets.find(t=>t.keys.some(k=>k.toLowerCase()===value))||null;
   }
   try{
-    const {data,error}=await client.from('products').select('id,name,model,category,description,specifications,image_urls').eq('is_published',true).order('created_at',{ascending:false});
+    const {data,error}=await client.from('products').select('id,name,model,category,subcategory,description,specifications,image_urls').eq('is_published',true).order('created_at',{ascending:false});
     if(error)throw error;
     (data||[]).forEach((p,index)=>{
-      const target=getTarget(p.category);
+      const target=getTarget(p.category,p.subcategory);
       if(!target){console.warn('제품 카테고리가 기존 분류와 일치하지 않아 표시하지 않았습니다:',p.category,p.name);return;}
       const panel=document.getElementById(target.id);
       if(!panel)return;
