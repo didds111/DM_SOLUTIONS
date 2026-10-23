@@ -93,10 +93,12 @@ else if(hash==='filter-side'){setCategory('filter');document.querySelector('[dat
     const value=String(category||'').trim().toLowerCase();
     const sub=String(subcategory||'').trim().toLowerCase();
     if(value==='panel'||value==='판넬쿨러'||value==='판넬 쿨러'){
-      if(sub.includes('es') && !sub.includes('ess')) return categoryTargets.find(t=>t.id==='panel-es');
-      if(sub.includes('측면')||sub.includes('정면')||/^s(?:\b|\s|\()/i.test(sub)) return categoryTargets.find(t=>t.id==='panel-s');
-      if(sub.includes('반매립')||/^x(?:\b|\s|\()/i.test(sub)) return categoryTargets.find(t=>t.id==='panel-x');
-      if(sub.includes('천장')||sub.includes('천정')||/^r(?:\b|\s|\()/i.test(sub)) return categoryTargets.find(t=>t.id==='panel-r');
+      // Match the explicit subcategory prefix; avoid broad substring checks.
+      if(/^ess(?:\b|\s|\()/i.test(sub)||sub.includes('옥외형')) return categoryTargets.find(t=>t.id==='panel-intro');
+      if(/^es(?:\b|\s|\()/i.test(sub)||sub.includes('에너지 절감형')) return categoryTargets.find(t=>t.id==='panel-es');
+      if(/^s(?:\b|\s|\()/i.test(sub)||sub.includes('측면')||sub.includes('정면')) return categoryTargets.find(t=>t.id==='panel-s');
+      if(/^x(?:\b|\s|\()/i.test(sub)||sub.includes('반매립')) return categoryTargets.find(t=>t.id==='panel-x');
+      if(/^r(?:\b|\s|\()/i.test(sub)||sub.includes('천장')||sub.includes('천정')) return categoryTargets.find(t=>t.id==='panel-r');
       return categoryTargets.find(t=>t.id==='panel-intro');
     }
     if(value==='filter'){
