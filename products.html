@@ -94,12 +94,12 @@ else if(hash==='filter-side'){setCategory('filter');document.querySelector('[dat
     const sub=String(subcategory||'').trim().toLowerCase();
     if(value==='panel'||value==='판넬쿨러'||value==='판넬 쿨러'){
       // Match the explicit subcategory prefix; avoid broad substring checks.
-      if(/^ess(?:\b|\s|\()/i.test(sub)||sub.includes('옥외형')) return categoryTargets.find(t=>t.id==='panel-intro');
-      if(/^es(?:\b|\s|\()/i.test(sub)||sub.includes('에너지 절감형')) return categoryTargets.find(t=>t.id==='panel-es');
-      if(/^s(?:\b|\s|\()/i.test(sub)||sub.includes('측면')||sub.includes('정면')) return categoryTargets.find(t=>t.id==='panel-s');
-      if(/^x(?:\b|\s|\()/i.test(sub)||sub.includes('반매립')) return categoryTargets.find(t=>t.id==='panel-x');
-      if(/^r(?:\b|\s|\()/i.test(sub)||sub.includes('천장')||sub.includes('천정')) return categoryTargets.find(t=>t.id==='panel-r');
-      return categoryTargets.find(t=>t.id==='panel-intro');
+      if(/^ess(?:\b|\s|\()/i.test(sub)||sub.includes('옥외형')) return {id:'panel-intro',cat:'panel'};
+      if(/^es(?:\b|\s|\()/i.test(sub)||sub.includes('에너지 절감형')) return {id:'panel-es',cat:'panel'};
+      if(/^s(?:\b|\s|\()/i.test(sub)||sub.includes('측면')||sub.includes('정면')) return {id:'panel-s',cat:'panel'};
+      if(/^x(?:\b|\s|\()/i.test(sub)||sub.includes('반매립')) return {id:'panel-x',cat:'panel'};
+      if(/^r(?:\b|\s|\()/i.test(sub)||sub.includes('천장')||sub.includes('천정')) return {id:'panel-r',cat:'panel'};
+      return {id:'panel-intro',cat:'panel'};
     }
     if(value==='filter'){
       if(sub.includes('천장')||sub.includes('천정')||sub==='ceiling') return categoryTargets.find(t=>t.id==='filter-ceiling-intro');
@@ -125,6 +125,16 @@ else if(hash==='filter-side'){setCategory('filter');document.querySelector('[dat
       if(!panel)return;
       const grid=panel.querySelector('.products');
       if(!grid)return;
+      // Keep existing legacy cards visible during migration, but do not append a CMS duplicate for the same model/name.
+      const candidateKeys=[p.model,p.name].filter(Boolean).map(v=>String(v).trim().toLowerCase());
+      const alreadyVisible=[...grid.querySelectorAll('.product-card:not(.cms-added-card) .model')].some(el=>{
+        const existing=String(el.textContent||'').trim().toLowerCase();
+        return candidateKeys.includes(existing);
+      });
+      if(alreadyVisible){
+        console.info('[CMS 진단] 기존 카드와 모델/이름이 같아 중복 추가 생략:',{model:p.model,name:p.name,target:target.id});
+        return;
+      }
       const images=Array.isArray(p.image_urls)?p.image_urls:[];
       const img=images.length?'<img src="'+esc(images[0])+'" alt="'+esc(p.name)+'" loading="lazy">':'';
       const specEntries=p.specifications&&typeof p.specifications==='object'?Object.entries(p.specifications):[];
