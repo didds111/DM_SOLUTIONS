@@ -15,7 +15,7 @@
 <section class="panel"><div class="topline"><h2>관리 메뉴</h2><div class="actions"><button type="button" class="btn" id="productTab">제품 관리</button><button type="button" class="btn secondary" id="portfolioTab">포트폴리오 관리</button></div></div><p class="muted">제품과 포트폴리오를 이 관리자 화면에서 함께 등록하고 관리합니다.</p></section>
 <div id="productAdminPane">
 <section class="panel"><div class="topline"><h2 id="formTitle">제품 등록</h2><button class="btn secondary" id="newBtn" type="button">새 제품 작성</button></div>
-<div class="note">기존 제품 페이지에 있던 정보를 이 폼으로 옮겨 등록합니다. 사진은 우선 공개 접근 가능한 이미지 URL을 입력하는 방식입니다. 저장 전에는 기존 제품 페이지의 원본 자료를 삭제하지 마세요.</div>
+<div class="note">제품 정보는 이 관리자에서 저장하면 제품 페이지에 자동 반영됩니다. 사진은 URL 입력 또는 파일 업로드로 등록할 수 있습니다.</div>
 <form id="productForm">
 <input id="productId" type="hidden">
 <div class="row">
@@ -86,7 +86,7 @@ $('uploadImages').addEventListener('click',async()=>{
  const allowed=['image/jpeg','image/png','image/webp','image/gif'];
  for(const file of files){if(!allowed.includes(file.type)){status('uploadStatus','지원하지 않는 이미지 형식입니다: '+file.name,'error');return;}if(file.size>10*1024*1024){status('uploadStatus','파일당 최대 10MB까지 업로드할 수 있습니다: '+file.name,'error');return;}}
  const btn=$('uploadImages');btn.disabled=true;
- const urls=$('images').value.split('\\n').map(v=>v.trim()).filter(Boolean);
+ const urls=$('images').value.split('\n').map(v=>v.trim()).filter(Boolean);
  let uploaded=0;
  try{
   for(const file of files){
@@ -99,7 +99,7 @@ $('uploadImages').addEventListener('click',async()=>{
    if(data?.publicUrl){urls.push(data.publicUrl);uploaded++;}
    else throw new Error('공개 이미지 주소를 만들지 못했습니다: '+file.name);
   }
-  $('images').value=[...new Set(urls)].join('\\n');
+  $('images').value=[...new Set(urls)].join('\n');
   $('imageFiles').value='';
   status('uploadStatus',uploaded+'개 이미지 업로드 완료. 제품 정보 저장 버튼을 눌러 주소를 제품에 연결하세요.','ok');
  }catch(err){status('uploadStatus','이미지 업로드 실패: '+err.message,'error');}
@@ -122,7 +122,7 @@ function fillPortfolioForm(p){
  $('portfolioDate').value=p?.project_date||'';
  $('portfolioSort').value=p?.sort_order??0;
  $('portfolioDescription').value=p?.description||'';
- $('portfolioImages').value=Array.isArray(p?.image_urls)?p.image_urls.join('\\n'):'';
+ $('portfolioImages').value=Array.isArray(p?.image_urls)?p.image_urls.join('\n'):'';
  $('portfolioPublished').checked=p?.is_published??true;
  $('portfolioFormTitle').textContent=p?'포트폴리오 수정':'포트폴리오 등록';
  $('savePortfolioBtn').textContent=p?'수정 내용 저장':'포트폴리오 저장';
@@ -172,7 +172,7 @@ $('uploadPortfolioImages').addEventListener('click',async()=>{
  const allowed=['image/jpeg','image/png','image/webp','image/gif'];
  for(const file of files){if(!allowed.includes(file.type)){status('portfolioUploadStatus','지원하지 않는 이미지 형식입니다: '+file.name,'error');return;}if(file.size>10*1024*1024){status('portfolioUploadStatus','파일당 최대 10MB까지 업로드할 수 있습니다: '+file.name,'error');return;}}
  const btn=$('uploadPortfolioImages');btn.disabled=true;
- const urls=$('portfolioImages').value.split('\\n').map(v=>v.trim()).filter(Boolean);let uploaded=0;
+ const urls=$('portfolioImages').value.split('\n').map(v=>v.trim()).filter(Boolean);let uploaded=0;
  try{
   for(const file of files){
    const safeName=file.name.normalize('NFKD').replace(/[^a-zA-Z0-9._-]+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'')||'portfolio-image';
@@ -184,15 +184,15 @@ $('uploadPortfolioImages').addEventListener('click',async()=>{
    if(!data?.publicUrl)throw new Error('공개 사진 주소를 만들지 못했습니다: '+file.name);
    urls.push(data.publicUrl);uploaded++;
   }
-  $('portfolioImages').value=[...new Set(urls)].join('\\n');$('portfolioImageFiles').value='';
+  $('portfolioImages').value=[...new Set(urls)].join('\n');$('portfolioImageFiles').value='';
   status('portfolioUploadStatus',uploaded+'개 사진 업로드 완료. 포트폴리오 저장 버튼을 눌러 연결하세요.','ok');
  }catch(err){status('portfolioUploadStatus','사진 업로드 실패: '+err.message,'error');}
  finally{btn.disabled=false;}
 });
 $('portfolioForm').addEventListener('submit',async e=>{
  e.preventDefault();if(!currentUser)return;
- const images=$('portfolioImages').value.split('\\n').map(v=>v.trim()).filter(Boolean);
- if(images.some(v=>!/^https?:\\/\\//i.test(v))){status('portfolioFormStatus','사진 주소는 http:// 또는 https:// 로 시작해야 합니다.','error');return;}
+ const images=$('portfolioImages').value.split('\n').map(v=>v.trim()).filter(Boolean);
+ if(images.some(v=>!/^https?:\/\//i.test(v))){status('portfolioFormStatus','사진 주소는 http:// 또는 https:// 로 시작해야 합니다.','error');return;}
  const payload={title:$('portfolioTitle').value.trim(),description:$('portfolioDescription').value.trim(),category:$('portfolioCategory').value.trim()||null,project_date:$('portfolioDate').value||null,sort_order:Number.parseInt($('portfolioSort').value,10)||0,image_urls:images,is_published:$('portfolioPublished').checked};
  const id=$('portfolioId').value;status('portfolioFormStatus','저장 중…');
  const result=id?await db.from('portfolio').update(payload).eq('id',id):await db.from('portfolio').insert(payload);
