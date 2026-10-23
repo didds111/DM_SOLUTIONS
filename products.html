@@ -115,7 +115,10 @@ else if(hash==='filter-side'){setCategory('filter');document.querySelector('[dat
     });
     (data||[]).forEach((p,index)=>{
       const target=getTarget(p.category,p.subcategory);
-      if(!target){console.warn('제품 카테고리가 기존 분류와 일치하지 않아 표시하지 않았습니다:',p.category,p.name);return;}
+      if(!target){
+        console.warn('CMS 제품 분류 연결 실패:',{id:p.id,name:p.name,model:p.model,category:p.category,subcategory:p.subcategory});
+        return;
+      }
       const panel=document.getElementById(target.id);
       if(!panel)return;
       const grid=panel.querySelector('.products');
